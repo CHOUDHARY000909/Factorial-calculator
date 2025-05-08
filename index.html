@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factorial Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Factorial Calculator</h1>
+        <p>Enter a number to calculate its factorial using both iterative and recursive methods.</p>
+        
+        <input type="number" id="numberInput" placeholder="Enter a number" min="0" />
+        
+        <div class="buttons">
+            <button onclick="calculateIterative()">Iterative</button>
+            <button onclick="calculateRecursive()">Recursive</button>
+        </div>
+        
+        <div class="result">
+            <p id="resultText">Result will appear here...</p>
+        </div>
+    </div>
+
+    <script>
+        function calculateIterative() {
+            const num = parseInt(document.getElementById("numberInput").value);
+            if (isNaN(num) || num < 0) {
+                document.getElementById("resultText").innerText = "Please enter a non-negative integer.";
+                return;
+            }
+            let result = 1;
+            for (let i = 2; i <= num; i++) {
+                result *= i;
+            }
+            document.getElementById("resultText").innerText = `Iterative: ${num}! = ${result}`;
+        }
+
+        function calculateRecursive() {
+            const num = parseInt(document.getElementById("numberInput").value);
+            if (isNaN(num) || num < 0) {
+                document.getElementById("resultText").innerText = "Please enter a non-negative integer.";
+                return;
+            }
+
+            function factorial(n) {
+                return n <= 1 ? 1 : n * factorial(n - 1);
+            }
+
+            const result = factorial(num);
+            document.getElementById("resultText").innerText = `Recursive: ${num}! = ${result}`;
+        }
+    </script>
+</body>
+</html>
